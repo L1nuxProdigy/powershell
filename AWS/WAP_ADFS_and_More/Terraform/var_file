@@ -1,0 +1,7 @@
+aws_access_key = ""
+aws_secret_key = ""
+
+dc_adfs = "../ms_scripts/dc_adfs/initial_user_data_script"
+ca = "../ms_scripts/ca/initial_user_data_script"
+iis_claimapp = "../ms_scripts/iis_claimapp/initial_user_data_script"
+wap = "../ms_scripts/wap/initial_user_data_script"

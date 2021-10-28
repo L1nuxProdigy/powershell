@@ -1,0 +1,35 @@
+<powershell>
+## Downloading and unzipping a Github Repo
+# Declaring vars and the web client object, moreover making PS use tls1.2 for the net objects instad of tls 1.1
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+$wc = New-Object System.Net.WebClient
+$machine_working_location = "C:\Users\Administrator\Desktop\"
+$url_array = @(
+				("https://github.com/L1nuxProdigy/PowerShell/archive/master.zip","$machine_working_location\zip.zip"), 
+				("https://download.mozilla.org/?product=firefox-msi-latest-ssl&os=win64&lang=en-US","$machine_working_location\firefox.msi"),
+				("https://download.microsoft.com/download/7/0/1/70118832-3749-4C75-B860-456FC0712870/WindowsIdentityFoundation-SDK-3.5.msi","$machine_working_location\WinSDK3.5.msi")
+			  )
+# Downloading the desired content including the repo
+ForEach ($item In $url_array)
+{
+$wc.DownloadFile($item[0], $item[1])
+}
+
+# Unzip The Repo
+Expand-Archive $url_array[0][1] -DestinationPath $machine_working_location
+
+## Sorting the desktop
+cd $machine_working_location
+Move-Item .\PowerShell-master\AWS\WAP_ADFS_and_More\ $machine_working_location
+Remove-Item -path "EC2 Feedback.website"
+Remove-Item -path "EC2 Microsoft Windows Guide.website"
+Remove-Item -path "zip.zip"
+Remove-Item -path "PowerShell-master" -Recurse
+
+## disabling the firewall
+Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
+
+## Lunch Configuration Script
+cd WAP_ADFS_and_More\ms_scripts\iis_claimapp
+./initial_configuration.ps1
+</powershell>

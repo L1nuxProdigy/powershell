@@ -1,0 +1,1 @@
+Remove-AzureADUser -ObjectId "$FirstName@$DomainName.com"

@@ -1,0 +1,6 @@
+<powershell>
+
+## Change the name of the built in local administrator and set it with a simple initial password
+Set-LocalUser -Name "administrator" -Password $(ConvertTo-SecureString -string "Aa123456" -AsPlainText -Force)
+
+</powershell>

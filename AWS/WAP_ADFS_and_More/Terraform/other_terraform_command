@@ -1,0 +1,5 @@
+## destroy all instances
+terraform destroy -var-file='var_file' -target aws_instance.DC_ADFS_2016 -target aws_instance.IIS_ClaimApp -target aws_instance.WAP  -target aws_instance.CA
+
+## apply wap only
+terraform apply -var-file='var_file' -target aws_instance.WAP

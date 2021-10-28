@@ -1,0 +1,1 @@
+Copy-Item -Path "C:\Program Files (x86)\Windows Identity Foundation SDK\v3.5\Samples\Quick Start\Web Application\PassiveRedirectBasedClaimsAwareWebApp" -Destination "C:\Inetpub\Claimapp" -Recurse

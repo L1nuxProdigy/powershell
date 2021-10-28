@@ -1,0 +1,22 @@
+<powershell>
+## Downloading and unzipping a Github Repo
+# Download The Repo
+$url = "https://github.com/L1nuxProdigy/PowerShell/archive/master.zip"
+$machine_working_location = "C:\Users\Administrator\Desktop\"
+$repo_output = "$machine_working_location\zip.zip"
+Start-BitsTransfer -Source $url -Destination $repo_output
+# Unzip The Repo
+Expand-Archive $repo_output -DestinationPath $machine_working_location
+
+## Sorting the desktop
+cd $machine_working_location
+Move-Item .\PowerShell-master\AWS\WAP_ADFS_and_More\ $machine_working_location
+Remove-Item -path "EC2 Feedback.website"
+Remove-Item -path "EC2 Microsoft Windows Guide.website"
+Remove-Item -path "zip.zip"
+
+## Change the name of the built in local administrator and set it with a simple initial password
+Rename-LocalUser -Name "Administrator" -NewName "AppAdmin"
+Set-LocalUser -Name "appadmin" -Password $(ConvertTo-SecureString -string "Aa123456" -AsPlainText -Force)
+
+</powershell>

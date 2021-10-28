@@ -1,0 +1,1 @@
+Get-AzureADUser -SearchString "$FirstNameLowerCase@$DomainName.com" | Get-AzureADUserMembership
